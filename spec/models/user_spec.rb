@@ -21,9 +21,18 @@ RSpec.describe User, type: :model do
 
   describe "#add_task" do
     it "should create a new list and add the task if the list  is not found" do
+      user.add_task("Groceries to shop", "Buy Beer", "For Friends and party")
+      expect(user.to_do_lists.count).to eq 1
+      expect(user.to_do_lists.first.name).to eq "Groceries to shop"
+      expect(user.to_do_lists.first.to_do_items.count).to eq 1
     end
 
     it "should add the task to list" do
+      user.create_to_do_list("Sports")
+      user.create_to_do_list("Skills")
+      user.add_task("Skills", "Ruby", "An awesome language")
+      to_do_list = user.to_do_lists.find_by(name: "Skills")
+      expect(to_do_list.to_do_items.count).to eq 1
     end
 
     it "should not add a task without a title" do
