@@ -1,0 +1,36 @@
+version: '2'
+services:
+  to_do_list:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - to_do_list-db
+    environment:
+      - PASSENGER_APP_ENV=development
+      - VIRTUAL_PORT=80
+      - VIRTUAL_HOST=to_do_list.dev.com
+      - RAILS_LOG_TO_STDOUT=true
+    ports:
+      - "80:80"
+    volumes:
+      - .:/home/app/webapp
+  to_do_list-db:
+    image: postgres:9.5.2
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=poker
+      - POSTGRES_DB=poker_development
+    volumes_from:
+      - to_do_list-db-data
+    ports:
+      - "5432"
+  to_do_list-db-data:
+    image: postgres:9.5.2
+    volumes:
+      - /var/lib/postgresql/data
+    command: /bin/true
+
+networks:
+  poker:
+    driver: bridge
