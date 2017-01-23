@@ -24,6 +24,7 @@ group :development, :test do
   gem 'faker'
   gem 'pry'
   gem "webmock"
+  gem 'factory_girl'
 end
 
 group :development do
