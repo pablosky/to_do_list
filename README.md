@@ -20,6 +20,7 @@ start the app
 ```
 docker-compose up -d
 ```
+make sure to not be using the port 80
 
 # Testing
 
@@ -40,4 +41,7 @@ $ docker-compose exec to_do_list /bin/bash -c "RAILS_ENV=test bundle exec rspec"
 ```
 $ docker-compose exec to_do_list /bin/bash -c "bundle exec rake db:migrate"
 ```
-This app could be highly improved by adding a poker game model(to slimdown the game controller as it should be), more styles, some js(for the load of the deck) and more unitary tests.  
+# Some thoughts
+
+in a bigger app call to methods might come from other controllers, the authentication now is a joke and it will
+definitely will be using at least a token in a real case
