@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 20170123140744) do
     t.date     "start_date"
     t.date     "end_date"
     t.text     "description"
-    t.integer  "status"
+    t.integer  "status",        default: 0
     t.integer  "to_do_list_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.index ["to_do_list_id"], name: "index_to_do_items_on_to_do_list_id"
   end
 

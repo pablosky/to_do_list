@@ -5,9 +5,8 @@ class CreateToDoItems < ActiveRecord::Migration[5.0]
       t.date :start_date
       t.date :end_date
       t.text :description
-      t.integer :status
+      t.integer :status, default: 0
       t.references :to_do_list, foreign_key: true
-
       t.timestamps
     end
   end
